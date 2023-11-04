@@ -1,0 +1,28 @@
+.hero {
+    background-color: rgb(71, 117, 233);
+}
+
+.logo-container {
+    display: grid;
+    margin-top: -8px;
+    user-select: none;
+}
+
+.title {
+    font-size: 24px;
+    color: black;
+    padding-top: 8px;
+    margin-left: 41px;
+    margin-bottom: -24px;
+}
+
+#logo {
+    width: 15%;
+    padding-bottom: 12px;
+    border-bottom: 4px solid white;
+}
+
+.container {
+    margin-top: 12px;
+    display: flex;
+}

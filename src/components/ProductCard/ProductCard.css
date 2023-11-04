@@ -1,0 +1,50 @@
+.card-container {
+    background-color: rgb(220, 243, 253);
+    border: 2px solid rgb(209, 209, 209);
+    box-shadow: 2px;
+    padding: 12px;
+}
+
+.card-title {
+    color: rgb(40, 40, 40);
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card-price {
+    font-weight: bold;
+}
+
+.card-desc {
+    display: flex;
+}
+
+.card-series {
+    color: rgb(159, 159, 159);
+    font-size: 16px;
+    font-weight: lighter;
+    margin-top: 9px;
+}
+
+.card-button {
+    margin-left: auto;
+    color: white;
+    font-size: 16px;
+    background-color: rgb(42, 67, 232);
+    border: none;
+    border-radius: 5%;
+    width: 80px;
+    height: 40px;
+    transition: 0.1s;
+}
+
+.card-button:hover {
+    font-size: 18px;
+    background-color: rgb(55, 100, 216);
+}
+
+.card-button:active {
+    font-size: 14px;
+    background-color: rgb(41, 19, 204);
+}
