@@ -1,5 +1,13 @@
-.hero {
-    background-color: rgb(71, 117, 233);
+.header-container {
+    position: sticky;
+    top: 0;
+}
+
+.body-container {
+    display: flex;
+    position: absolute;
+    height: 82.1%;
+    width: 100%;
 }
 
 .logo-container {
@@ -12,7 +20,7 @@
     font-size: 24px;
     color: black;
     padding-top: 8px;
-    margin-left: 41px;
+    margin-left: 0.25%;
     margin-bottom: -24px;
 }
 
@@ -22,7 +30,26 @@
     border-bottom: 4px solid white;
 }
 
-.container {
+.list-container {
+    display: sticky;
+    height: auto;
+    width: 55%;
+    align-items: stretch;
+    background-color: rgb(235, 235, 235);
+    border-right: 2px solid gray;
+    user-select: none;
+}
+
+.products-container {
     margin-top: 12px;
+    margin-left: 12px;
     display: flex;
+}
+
+#search-icon {
+    margin-left: 2%;
+}
+
+footer {
+    background-color: black;
 }
