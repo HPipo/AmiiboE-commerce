@@ -48,3 +48,18 @@
     font-size: 14px;
     background-color: rgb(41, 19, 204);
 }
+
+.card-counter {
+    background-color: white;
+    width: 23%;
+    border: rgb(159, 159, 159) 2px solid;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.card-counter-number {
+    text-align: center;
+}

@@ -1,6 +1,8 @@
+import { useState } from "react";
 import ProductCard from "./components/ProductCard/ProductCard";
 import NavBar from "./components/NavBar/NavBar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import searchAmiibo from "./api";
 import mario from "./img/mario.jpg";
 import luigi from "./img/luigi.jpg";
 import isabelle from "./img/isabelle.jpg";
@@ -8,6 +10,12 @@ import "./styles.css";
 import "bulma/css/bulma.css";
 
 function App() {
+
+
+    const handleSubmit = (term) => {
+        console.log("Let's search for:" + term)
+    }
+
     return (
         <div>
             <div className="header-container">
@@ -16,7 +24,7 @@ function App() {
             <div className="body-container">
                 <section className="list-container">
                     <div>
-                        <ItemListContainer></ItemListContainer>
+                        <ItemListContainer inSubmit={handleSubmit}></ItemListContainer>
                     </div>
                 </section>
                 <section className="products-container">
