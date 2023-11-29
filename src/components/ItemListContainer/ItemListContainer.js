@@ -23,7 +23,7 @@ function ItemListContainer ({ inSubmit }) {
             </div>    
                 <div className="category-container">
                     <ItemCategory title="Card" link="cards"></ItemCategory>
-                    <ItemCategory title="Figure"link="figurines"></ItemCategory>
+                    <ItemCategory title="Figure"link="figures"></ItemCategory>
                     <ItemCategory title="Yarn"link="yarns"></ItemCategory>
                 </div>
         </div>

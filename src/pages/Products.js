@@ -25,18 +25,18 @@ function Products() {
 
     const filteredSubmit = async (arr, data) => {
         const filteredAmiibo = arr.filter((item) => item.name.includes(data))
+        setAmiibo(filteredAmiibo)
         if (window.location.href.includes("cards")) {
             let filteredParamAmiibo = filteredAmiibo.filter((item) => item.type.includes("Card"))
             setAmiibo(filteredParamAmiibo)
-        }else if (window.location.href.includes("figurines")) {
-            let filteredParamAmiibo = filteredAmiibo.filter((item) => item.type.includes("Figurines"))
+        }else if (window.location.href.includes("figures")) {
+            let filteredParamAmiibo = filteredAmiibo.filter((item) => item.type.includes("Figure"))
             setAmiibo(filteredParamAmiibo)
         }else if (window.location.href.includes("yarn")) {
             let filteredParamAmiibo = filteredAmiibo.filter((item) => item.type.includes("Yarn"))
             setAmiibo(filteredParamAmiibo)
         }
         console.log(filteredAmiibo)
-        setAmiibo(filteredAmiibo)
     }
 
 
