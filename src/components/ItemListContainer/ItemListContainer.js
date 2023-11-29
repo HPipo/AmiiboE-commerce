@@ -16,16 +16,16 @@ function ItemListContainer ({ inSubmit }) {
     return (
         <div className="item-container">
             <div className="searchbox-container">
-                <FontAwesomeIcon icon={faMagnifyingGlass} id="search-icon"/>
                 <form onSubmit={handleSubmit}>
+                    <FontAwesomeIcon icon={faMagnifyingGlass} id="search-icon"/>
                     <input className="searchbox" type="text" onChange={(e) => {setTerm(e.target.value)}} placeholder="Search for an amiibo..."/>
                 </form>
             </div>    
-            <div className="category-container">
-                <ItemCategory title="Series"></ItemCategory>
-                <ItemCategory title="Prices"></ItemCategory>
-                <ItemCategory title="Figurines"></ItemCategory>
-            </div>
+                <div className="category-container">
+                    <ItemCategory title="Card" link="cards"></ItemCategory>
+                    <ItemCategory title="Figure"link="figurines"></ItemCategory>
+                    <ItemCategory title="Yarn"link="yarns"></ItemCategory>
+                </div>
         </div>
     )
 }

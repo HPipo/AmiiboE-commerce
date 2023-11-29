@@ -4,7 +4,8 @@
 }
 
 .body-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
     position: absolute;
     height: 100%;
     width: 100%;
@@ -42,12 +43,88 @@
 
 .products-container {
     margin-top: 12px;
-    margin-left: 12px;
-    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 #search-icon {
     margin-left: 2%;
+}
+
+.card-container {
+    background-color: rgb(220, 243, 253);
+    border: 2px solid rgb(209, 209, 209);
+    box-shadow: 2px;
+    padding: 12px;
+}
+
+.card-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 480px;
+    height: 320px;
+}
+
+.card-title {
+    color: rgb(40, 40, 40);
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card-price {
+    font-weight: bold;
+}
+
+.card-desc {
+    display: flex;
+}
+
+.card-series {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: rgb(159, 159, 159);
+    font-size: 16px;
+    font-weight: lighter;
+    margin-top: 9px;
+}
+
+.card-button {
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    background-color: rgb(42, 67, 232);
+    border: none;
+    padding: 20px;
+    border-radius: 5%;
+    width: 80px;
+    transition: 0.1s;
+}
+
+.card-button:hover {
+    background-color: rgb(55, 100, 216);
+}
+
+.card-button:active {
+    background-color: rgb(41, 19, 204);
+}
+
+.card-counter {
+    background-color: white;
+    width: 23%;
+    border: rgb(159, 159, 159) 2px solid;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.card-counter-number {
+    text-align: center;
 }
 
 footer {

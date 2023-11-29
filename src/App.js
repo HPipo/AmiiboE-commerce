@@ -1,45 +1,25 @@
-import { useState } from "react";
-import ProductCard from "./components/ProductCard/ProductCard";
-import NavBar from "./components/NavBar/NavBar";
-import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
-import searchAmiibo from "./api";
-import mario from "./img/mario.jpg";
-import luigi from "./img/luigi.jpg";
-import isabelle from "./img/isabelle.jpg";
-import "./styles.css";
-import "bulma/css/bulma.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+import Products from "./pages/Products";
+import Product from "./pages/Product";
+import Error from "./pages/Error";
 
 function App() {
-
-
-    const handleSubmit = (term) => {
-        console.log("Let's search for:" + term)
-    }
-
     return (
-        <div>
-            <div className="header-container">
-                <NavBar></NavBar>
-            </div>
-            <div className="body-container">
-                <section className="list-container">
-                    <div>
-                        <ItemListContainer inSubmit={handleSubmit}></ItemListContainer>
-                    </div>
-                </section>
-                <section className="products-container">
-                    <div className="column is-3">
-                        <ProductCard title="Luigi" image={luigi} series="Super Mario Bros" price="50"></ProductCard>   
-                    </div>
-                    <div className="column is-3">
-                        <ProductCard title="Isabelle" image={isabelle} series="Animal Crossing" price="60"></ProductCard>
-                    </div>
-                    <div className="column is-3">
-                        <ProductCard title="Mario" image={mario} series="Super Mario Bros" price="50"></ProductCard>   
-                    </div>
-                </section>
-            </div>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout/>}>
+                    <Route index element={<Home/>}/>
+                    <Route path="products" element={<Products/>}/>
+                    <Route path="products/cards" element={<Products/>}/>
+                    <Route path="products/figures" element={<Products/>}/>
+                    <Route path="products/yarns" element={<Products/>}/>
+                    <Route path="products/productlist/:productsId" element={<Product/>}/>
+                </Route>
+                <Route path="*" element={<Error/>}/>
+            </Routes>
+        </BrowserRouter>
     )
 }
 
