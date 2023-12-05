@@ -21,7 +21,7 @@
     font-size: 24px;
     color: black;
     padding-top: 8px;
-    margin-left: 0.25%;
+    margin-left: 2%;
     margin-bottom: -24px;
 }
 
@@ -29,6 +29,84 @@
     width: 15%;
     padding-bottom: 12px;
     border-bottom: 4px solid white;
+}
+
+.error-container {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    justify-content: center;
+}
+
+.welcome {
+    text-align: center;
+    font-size: 48px;
+    padding: 20px;
+}
+
+.products-button {
+    text-align: center;
+    font-size: 24px;
+}
+
+.searchbox {
+    width: 90%;
+    padding-left: 2%;
+    margin-top: 8%;
+    margin-left: 5px;
+    margin-bottom: 8%;
+}
+
+.item-container {
+    width: 100%;
+    background-color: rgb(235, 235, 235);
+}
+
+.category-container {
+    display: grid;
+}
+
+.category {
+    font-size: 24px;
+    border: none;
+    border-bottom: 2px solid gray;
+    border-top: 2px solid gray;
+    text-align: left;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: rgb(188, 188, 188);
+    transition: 0.1s;
+}
+
+.category:first-child {
+    font-size: 24px;
+    border: none;
+    border-top: 2px solid gray;
+    text-align: left;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: rgb(188, 188, 188);
+}
+
+.category:last-child {
+    font-size: 24px;
+    border: none;
+    border-bottom: 2px solid gray;
+    text-align: left;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: rgb(188, 188, 188);
+}
+
+.category:hover {
+    font-style: oblique;
+    background-color: rgb(209, 209, 209);
+    padding-left: 5%;
+}
+
+.category:active {
+    background-color: rgb(255, 255, 255);
+    padding-left: 5%;
 }
 
 .list-container {
@@ -43,8 +121,6 @@
 
 .products-container {
     margin-top: 12px;
-    margin-right: auto;
-    margin-left: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
@@ -56,8 +132,14 @@
 .card-container {
     background-color: rgb(220, 243, 253);
     border: 2px solid rgb(209, 209, 209);
+    margin-left: auto;
+    margin-right: auto;
     box-shadow: 2px;
     padding: 12px;
+}
+
+#card-container-single {
+    width: 500px;
 }
 
 .card-img {
@@ -70,9 +152,10 @@
 
 .card-title {
     color: rgb(40, 40, 40);
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
     text-align: center;
+    padding-top: 12px;
 }
 
 .card-price {
@@ -81,13 +164,16 @@
 
 .card-desc {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
 }
 
 .card-series {
     padding-top: 10px;
     padding-bottom: 10px;
     color: rgb(159, 159, 159);
-    font-size: 16px;
+    font-size: 14px;
     font-weight: lighter;
     margin-top: 9px;
 }
@@ -98,9 +184,10 @@
     text-align: center;
     background-color: rgb(42, 67, 232);
     border: none;
-    padding: 20px;
+    line-height: 60px;
     border-radius: 5%;
     width: 80px;
+    height: 60px;
     transition: 0.1s;
 }
 

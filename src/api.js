@@ -6,7 +6,6 @@ const searchAmiibo = async (term) => {
             query: term
         }
     })
-    console.log(response.data.amiibo)
     return response.data.amiibo
     
 }
