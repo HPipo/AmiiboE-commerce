@@ -189,13 +189,28 @@
     width: 80px;
     height: 60px;
     transition: 0.1s;
+    margin-right: 1%;
+}
+
+#card-buy {
+    background-color: rgb(19, 162, 79);
+}
+
+#card-buy:hover {
+    background-color: rgb(41, 200, 64);
+}
+
+#card-buy:active {
+    background-color: rgb(8, 104, 69);
 }
 
 .card-button:hover {
+    color: white;
     background-color: rgb(55, 100, 216);
 }
 
 .card-button:active {
+    color: white;
     background-color: rgb(41, 19, 204);
 }
 
@@ -212,6 +227,102 @@
 
 .card-counter-number {
     text-align: center;
+}
+
+.cart-page-body {
+    background-color: rgb(220, 243, 253);
+}
+
+.element-container {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.element-body {
+    display: flex;
+    border-bottom: rgb(159, 159, 159) 2px solid;
+}
+
+.element-image {
+    width: 125px;
+    height: 160px;
+    border-right: rgb(159, 159, 159) 2px solid;
+}
+
+.element-text {
+    display: flex;
+    align-items: center;
+}
+
+.element-count {
+    font-weight: bold;
+    margin-right: 5%;
+}
+
+.element-button {
+    color: white;
+    font-size: 48px;
+    position: absolute;
+    padding: 48px;
+    border: none;
+    background-color: rgb(41, 19, 204);
+    border-left: rgb(159, 159, 159) 2px solid;
+    right: 0;
+    transition: 0.2s;
+}
+
+.element-button:hover {
+    background-color: rgb(255, 0, 0);
+}
+
+.card-footer {
+    width: 100%;
+    border-top: 2px solid rgb(159, 159, 159);
+    background-color: rgb(136, 177, 248);
+    padding-left: 12%;
+    padding-right: 12%;
+    position: absolute;
+    bottom: 0;
+    justify-content: center;
+    gap: 5px;
+    display: flex;
+    height: 10%;
+}
+
+.cart-button {
+    width: 480px;
+    height: 93px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    background-color: rgb(42, 67, 232);
+    border: none;
+    border-right: 2px solid rgba(red, green, blue,0);
+    transition: 0.1s;
+}
+
+.cart-button:hover {
+    background-color: rgb(55, 100, 216);
+}
+
+.cart-button:active {
+    background-color: rgb(41, 19, 204);
+}
+
+.cart-link {
+    color: white;
+}
+
+#card-clear {
+    background-color: rgb(255, 0, 0);
+}
+
+#card-clear:hover {
+    background-color: rgb(255, 70, 38);
+}
+
+#card-clear:active {
+    background-color: rgb(180, 25, 40);
 }
 
 footer {
