@@ -68,21 +68,26 @@ function ItemListContainer () {
 
         let cardPrice = price.map((item) => {return item.cardPrice})
 
-        if (item.filter((prod) => prod.type.includes("Card"))) {
-            const updatedItem = amiibo.map((object) => {return({...object, price: cardPrice})})
-            setItem(updatedItem)
-        }else if (item.type === "Figure") {
-            item.map((object) => {
-                return ({...object, price: price[0].figurePrice})})
-        }else if (item.type === "Yarn") {
-            item.map((object) => {
-                return ({...object, price: price[0].yarnPrice})})
-        }else if (item.type === "Band") {
-            item.map((object) => {
-                return ({...object, price: price[0].bandPrice})})
-        }else {
-            console.log("error")
-        }
+        let figurePrice = price.map((item) => {return item.figurePrice})
+
+        let yarnPrice = price.map((item) => {return item.yarnPrice})
+
+        let bandPrice = price.map((item) => {return item.bandPrice})
+
+
+        let getCards = amiibo.filter((prod) => prod.type.includes("Card"))
+        const updatedCardPrices = getCards.map((object) => {return({...object, price: cardPrice})})
+
+        let getFigures = amiibo.filter((prod) => prod.type.includes("Figure"))
+        const updatedFigurePrices = getFigures.map((object) => {return({...object, price: figurePrice})})
+
+        let getYarns = amiibo.filter((prod) => prod.type.includes("Yarn"))
+        const updatedYarnPrices = getYarns.map((object) => {return({...object, price: yarnPrice})})
+
+        let getBands = amiibo.filter((prod) => prod.type.includes("Band"))
+        const updatedBandPrices = getBands.map((object) => {return({...object, price: bandPrice})})
+
+        setItem([...updatedBandPrices, ...updatedCardPrices, ...updatedFigurePrices, ...updatedYarnPrices])
 
     }, [price, data, categoryId, arr])
 

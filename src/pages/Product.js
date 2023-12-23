@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom"
 import searchAmiibo from "../api"
 import { db } from "../config/firebase"
 import { DataContext } from "../context/CartContext"
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import { collection, getDocs } from "firebase/firestore";
 
 function Product() {
@@ -66,41 +66,21 @@ function Product() {
 
     getStocks()
 
-    if (productContent.type === "Card") {
-        getProductContent(productContent.map((object) => {
-            return ({...object, price: price.cardPrice})
-        })
-    )}else if (productContent.type === "Figure") {
-        getProductContent(productContent.map((object) => {
-            return ({...object, price: price.figurePrice})
-        })
-    )}else if (productContent.type === "Band") {
-        getProductContent(productContent.map((object) => {
-            return ({...object, price: price.bandPrice})
-        })
-    )}else {
-        getProductContent(productContent.map((object) => {
-            return ({...object, price: price.yarnPrice})
-        })
-    )}
+    let cardPrice = price.map((item) => {return item.cardPrice})
 
-    if (productContent.type === "Card") {
-        getProductContent(productContent.map((object) => {
-            return ({...object, stock: stock.cardStock})
-        })
-    )}else if (productContent.type === "Figure") {
-        getProductContent(productContent.map((object) => {
-            return ({...object, stock: stock.figureStock})
-        })
-    )}else if (productContent.type === "Band") {
-        getProductContent(productContent.map((object) => {
-            return ({...object, stock: stock.bandStock})
-        })
-    )}else {
-        getProductContent(productContent.map((object) => {
-            return ({...object, stock: stock.yarnStock})
-        })
-    )}
+    let figurePrice = price.map((item) => {return item.figurePrice})
+
+    let yarnPrice = price.map((item) => {return item.yarnPrice})
+
+    let bandPrice = price.map((item) => {return item.bandPrice})
+
+    let cardStock = stock.map((item) => {return item.cardStock})
+
+    let figureStock = stock.map((item) => {return item.figureStock})
+
+    let yarnStock = stock.map((item) => {return item.yarnStock})
+
+    let bandStock = stock.map((item) => {return item.bandStock})
 
     const product = async () => {
        const data = await searchAmiibo(productId)
@@ -109,6 +89,20 @@ function Product() {
     }
 
     product()
+
+        if (productContent.type === "Card") {
+            productContent.price = cardPrice
+            productContent.stock = cardStock
+        }else if (productContent.type === "Figure") {
+            productContent.price = figurePrice
+            productContent.stock = figureStock
+        }else if (productContent.type === "Yarn") {
+            productContent.price = yarnPrice
+            productContent.stock = yarnStock
+        }else {
+            productContent.price = bandPrice
+            productContent.stock = bandStock
+        }
 
     return (
         <div className="column is-12">
@@ -119,8 +113,8 @@ function Product() {
                 <div className="card-desc">
                         <div>
                             <h4 className="card-series">Series: {productContent.gameSeries}</h4>
-                            <h4 className="card-series">Price:</h4>
-                            <h4 className="card-series">Stock:</h4>
+                            <h4 className="card-series">Price: {productContent.price}</h4>
+                            <h4 className="card-series">Stock: {productContent.stock}</h4>
                         </div>
                     <div className="card-counter">
                         <button className="card-counter-button" onClick={decrement}>-</button>
