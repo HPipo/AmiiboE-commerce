@@ -20,6 +20,8 @@ function ItemListContainer () {
 
     const [price, setPrice] = useState([])
 
+    const [item, setItem] = useState([])
+
     const {categoryId} = useParams()
 
     function handleSubmit(e) {
@@ -60,25 +62,29 @@ function ItemListContainer () {
             setAmiibo(filteredAmiibo)
         }
 
-        if (amiibo.type === "Card") {
-            setAmiibo(amiibo.map((object) => {
-                return ({...object, price: price.cardPrice})
-            })
-        )}else if (amiibo.type === "Figure") {
-            setAmiibo(amiibo.map((object) => {
-                return ({...object, price: price.figurePrice})
-            })
-        )}else if (amiibo.type === "Band") {
-            setAmiibo(amiibo.map((object) => {
-                return ({...object, price: price.bandPrice})
-            })
-        )}else {
-            setAmiibo(amiibo.map((object) => {
-                return ({...object, price: price.yarnPrice})
-            })
-        )}
+        setItem(amiibo.map((object) => {
+            return ({...object, price: null})
+        }))
 
-    }, [price, data, categoryId, arr, amiibo])
+        let cardPrice = price.map((item) => {return item.cardPrice})
+
+        if (item.filter((prod) => prod.type.includes("Card"))) {
+            const updatedItem = amiibo.map((object) => {return({...object, price: cardPrice})})
+            setItem(updatedItem)
+        }else if (item.type === "Figure") {
+            item.map((object) => {
+                return ({...object, price: price[0].figurePrice})})
+        }else if (item.type === "Yarn") {
+            item.map((object) => {
+                return ({...object, price: price[0].yarnPrice})})
+        }else if (item.type === "Band") {
+            item.map((object) => {
+                return ({...object, price: price[0].bandPrice})})
+        }else {
+            console.log("error")
+        }
+
+    }, [price, data, categoryId, arr])
 
     const onSubmit = async (term) => {
         let result = await searchAmiibo(term)
@@ -107,7 +113,7 @@ function ItemListContainer () {
                     </div>
                 </section>
                 <section className="products-container">
-                    {amiibo.map(prod => {return (
+                    {item.map(prod => {return (
                         <div className="column is-12">
                             <div className="card-container">
                                 <img className="card-img" src={prod.image} alt="logo"/>
