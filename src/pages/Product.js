@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom"
 import searchAmiibo from "../api"
 import { db } from "../config/firebase"
 import { DataContext } from "../context/CartContext"
-import { useState, useContext, useEffect } from "react"
+import { useState, useContext} from "react"
 import { collection, getDocs } from "firebase/firestore";
 
 function Product() {
@@ -18,27 +18,6 @@ function Product() {
     const {productId} = useParams()
 
     const {addItem, updateCartCounter} = useContext(DataContext)
-
-    const increment = () => {
-        setCount(prev => prev + 1)
-    }
-
-    const decrement = () => {
-        if (count > 0) {
-            setCount(prev => prev - 1)
-        }else {
-            setCount(prev => prev - 0)
-        }
-    }
-
-    const handleAddItem = () => {
-        const item = {
-            productId, productContent, count
-        }
-
-        addItem(item)
-        updateCartCounter(count)
-    }
 
     const pricesCollectionRef = collection(db, "prices")
 
@@ -88,21 +67,46 @@ function Product() {
        getProductContent(product)
     }
 
-    product()
+    if (productContent.type === "Card") {
+        productContent.price = cardPrice
+        productContent.stock = cardStock
+    }else if (productContent.type === "Figure") {
+        productContent.price = figurePrice
+        productContent.stock = figureStock
+    }else if (productContent.type === "Yarn") {
+        productContent.price = yarnPrice
+        productContent.stock = yarnStock
+    }else {
+        productContent.price = bandPrice
+        productContent.stock = bandStock
+    }
 
-        if (productContent.type === "Card") {
-            productContent.price = cardPrice
-            productContent.stock = cardStock
-        }else if (productContent.type === "Figure") {
-            productContent.price = figurePrice
-            productContent.stock = figureStock
-        }else if (productContent.type === "Yarn") {
-            productContent.price = yarnPrice
-            productContent.stock = yarnStock
+    const increment = () => {
+        if (count == productContent.stock) {
+            setCount(prev => prev + 0)
         }else {
-            productContent.price = bandPrice
-            productContent.stock = bandStock
+            setCount(prev => prev + 1)
         }
+    }
+
+    const decrement = () => {
+        if (count > 0) {
+            setCount(prev => prev - 1)
+        }else {
+            setCount(prev => prev - 0)
+        }
+    }
+
+    const handleAddItem = () => {
+        const item = {
+            productId, productContent, count
+        }
+
+        addItem(item)
+        updateCartCounter(count)
+    }
+
+    product()
 
     return (
         <div className="column is-12">
@@ -122,7 +126,7 @@ function Product() {
                         <button className="card-counter-button" onClick={increment}>+</button>
                     </div>
                     <Link to="/products" className="card-button">Return</Link>
-                    <button onClick={handleAddItem} className="card-button" id="card-buy">Comprar</button>
+                    <button onClick={handleAddItem} className="card-button" id="card-buy">Add</button>
                 </div>
             </div>
         </div>

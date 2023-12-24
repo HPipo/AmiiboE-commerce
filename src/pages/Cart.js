@@ -19,6 +19,7 @@ function Cart() {
                                     <div className="element-text">
                                     <p className="element-count">{element.count + "X"}</p>
                                     <p className="element-name">{element.productContent.name}</p>
+                                    <p className="element-price">Price: {element.productContent.price[0]}</p>
                                 </div>
                                 <button className="element-button" onClick={() => removeItem(element.productId, element.count)}>X</button>
                             </div>
@@ -26,13 +27,13 @@ function Cart() {
                     </div>
                 )})}
             </div>
-            <div>
-                <p><b>Total amount: </b>{cart.reduce((acumulator, item) => acumulator + item.price, 0)}</p>
+            <div className="element-total-price">
+                <p><b>Total amount: </b>{cart.reduce((acumulator, item) => acumulator + item.productContent.price[0] * item.count, 0)}</p>
             </div>
             <div className="card-footer">
                 <Link to="/products" className="cart-link"><button className="cart-button">Return</button></Link>
                 <button onClick={clearCart} className="cart-button"  id="card-clear">Clear Cart</button>
-                <Link to="/checkout" className="cart-link"><button className="cart-button"  id="card-buy">Checkout</button></Link>
+                <Link to="/login" className="cart-link"><button className="cart-button"  id="card-buy">Checkout</button></Link>
             </div>
         </div>
     )
