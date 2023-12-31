@@ -6,8 +6,6 @@ function Cart() {
 
     const {cart, removeItem, clearCart} = useContext(DataContext)
 
-    console.log(cart)
-
     return (
         <div className="cart-page-body">
             <div>
@@ -19,7 +17,7 @@ function Cart() {
                                     <div className="element-text">
                                     <p className="element-count">{element.count + "X"}</p>
                                     <p className="element-name">{element.productContent.name}</p>
-                                    <p className="element-price">Price: {element.productContent.price[0]}</p>
+                                    <p className="element-price">Price: {"$" + element.productContent.price[0]}</p>
                                 </div>
                                 <button className="element-button" onClick={() => removeItem(element.productId, element.count)}>X</button>
                             </div>
@@ -28,7 +26,7 @@ function Cart() {
                 )})}
             </div>
             <div className="element-total-price">
-                <p><b>Total amount: </b>{cart.reduce((acumulator, item) => acumulator + item.productContent.price[0] * item.count, 0)}</p>
+                <p><b>Total amount: </b>{"$" + cart.reduce((acumulator, item) => acumulator + item.productContent.price[0] * item.count, 0)}</p>
             </div>
             <div className="card-footer">
                 <Link to="/products" className="cart-link"><button className="cart-button">Return</button></Link>

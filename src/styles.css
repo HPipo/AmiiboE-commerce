@@ -1,4 +1,5 @@
 .header-container {
+    z-index: 1;
     position: sticky;
     top: 0;
 }
@@ -281,11 +282,11 @@
 }
 
 .element-total-price {
-    position: absolute;
+    position: sticky;
     text-align: center;
-    left: 47.1%;
     bottom: 0;
-    margin-bottom: 5.1%;
+    padding: 1%;
+    background-color: rgb(199, 220, 255);
 }
 
 .card-footer {
@@ -294,7 +295,7 @@
     background-color: rgb(136, 177, 248);
     padding-left: 12%;
     padding-right: 12%;
-    position: absolute;
+    position: sticky;
     bottom: 0;
     justify-content: center;
     gap: 5px;
@@ -336,6 +337,76 @@
 
 #card-clear:active {
     background-color: rgb(180, 25, 40);
+}
+
+#checkout-container {
+    position: absolute;
+    top: 36%;
+    left: 43.5%;
+    width: fit-content;
+    padding: 2%;
+    justify-content: center;
+}
+
+#check-title {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5%;
+}
+
+#checkout-buttons-container {
+    display: flex;
+    gap: 50%;
+    position: absolute;
+    top: 61%;
+    left: 43.5%;
+}
+
+.check-button {
+    display: inline-block;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    background-color: rgb(42, 67, 232);
+    border: none;
+    line-height: 60px;
+    border-radius: 5%;
+    width: 120px;
+    height: 60px;
+    transition: 0.1s;
+    margin-right: 1%;
+}
+
+#check-buy {
+    display: inline-block;
+    padding-left: 22px;
+    padding-right: 22px;
+    background-color: rgb(19, 162, 79);
+}
+
+#check-buy:hover {
+    background-color: rgb(41, 200, 64);
+}
+
+#check-buy:active {
+    background-color: rgb(8, 104, 69);
+}
+
+#checkout-button {
+    background-color: rgb(209, 108, 0);
+    position: absolute;
+    top: 70%;
+    left: 43.3%;
+    width: 13%;
+}
+
+#checkout-button:hover {
+    background-color: rgb(241, 170, 17);
+}
+
+#checkout-button:active {
+    background-color: rgb(182, 35, 6);
 }
 
 footer {

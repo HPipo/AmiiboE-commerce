@@ -8,6 +8,12 @@ const CartContext = ({children}) => {
 
     const [itemCounter, setItemCounter] = useState(0)
 
+    const [totalAmount, getTotalAmount] = useState(0)
+
+    const setAmount = (number) => {
+        getTotalAmount(number)
+    }
+
     const updateCartCounter = (counter) => {
         setItemCounter(itemCounter + counter)
     }
@@ -36,7 +42,7 @@ const CartContext = ({children}) => {
     }
 
     return (
-        <DataContext.Provider value={{ cart, itemCounter, updateCartCounter, addItem, removeItem, clearCart}}>
+        <DataContext.Provider value={{ cart, itemCounter, updateCartCounter, addItem, removeItem, clearCart, setAmount, totalAmount}}>
             {children}
         </DataContext.Provider>
     )
