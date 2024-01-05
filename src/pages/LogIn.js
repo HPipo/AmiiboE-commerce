@@ -1,8 +1,8 @@
 import { useState, useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { db } from "../config/firebase"
-import { collection, addDoc } from "firebase/firestore";
-import { DataContext } from "../context/CartContext";
+import { collection, addDoc, doc } from "firebase/firestore";
+import { DataContext } from "../context/Context";
 
 function LogIn() {
 
@@ -16,7 +16,7 @@ function LogIn() {
 
     const [visibility, setVisibility] = useState("hidden")
 
-    const {cart, totalAmount, setAmount} = useContext(DataContext)
+    const {cart, totalAmount, setAmount, getOrderId} = useContext(DataContext)
 
     const ordersCollectionRef = collection(db, "orders")
 
@@ -39,6 +39,8 @@ function LogIn() {
             items: getIdList,
             total: totalAmount,
             date: getCurrentDate()
+        }).then ((docRef) => {
+            getOrderId(docRef.id)
         })
      }
 
@@ -51,6 +53,7 @@ function LogIn() {
         const hh = dateData.getHours()
         const m = dateData.getMinutes()
         const s = dateData.getSeconds()
+        const ml = dateData.getMilliseconds()
 
         const timeFix = (value) => {
             if (value > 9) {
@@ -60,7 +63,17 @@ function LogIn() {
             }
         }
 
-        return (timeFix(hh) + hh + ":" + timeFix(m) + m + ":" + timeFix(s) + s + " " + dd + "/" + mm + "/" + yyyy)
+        const mlFix = (value) => {
+            if (value > 99) {
+                return ("")
+            }else if (value > 9) {
+                return ("0")
+            }else {
+                return ("00")
+            }
+        }
+
+        return (timeFix(hh) + hh + ":" + timeFix(m) + m + ":" + timeFix(s) + s + ":" + mlFix(ml) + ml + " " + dd + "/" + mm + "/" + yyyy)
     }
 
     return (

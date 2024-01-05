@@ -1,5 +1,5 @@
 import cart from "./assets/cart.svg"
-import { DataContext } from "../../../context/CartContext"
+import { DataContext } from "../../../context/Context"
 import { Link } from "react-router-dom"
 import { useContext } from "react"
 

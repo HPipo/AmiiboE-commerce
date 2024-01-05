@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom"
 import searchAmiibo from "../api"
 import { db } from "../config/firebase"
-import { DataContext } from "../context/CartContext"
+import { DataContext } from "../context/Context"
 import { useState, useContext} from "react"
 import { collection, getDocs } from "firebase/firestore";
 

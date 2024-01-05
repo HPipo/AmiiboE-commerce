@@ -10,6 +10,8 @@ const CartContext = ({children}) => {
 
     const [totalAmount, getTotalAmount] = useState(0)
 
+    const [orderId, setOrderId] = useState("")
+
     const setAmount = (number) => {
         getTotalAmount(number)
     }
@@ -41,8 +43,12 @@ const CartContext = ({children}) => {
         return cart.some(prod => prod.productId === itemId)
     }
 
+    const getOrderId = (id) => {
+        setOrderId(id)
+    }
+
     return (
-        <DataContext.Provider value={{ cart, itemCounter, updateCartCounter, addItem, removeItem, clearCart, setAmount, totalAmount}}>
+        <DataContext.Provider value={{ cart, itemCounter, updateCartCounter, addItem, removeItem, clearCart, setAmount, getOrderId, totalAmount, orderId}}>
             {children}
         </DataContext.Provider>
     )
