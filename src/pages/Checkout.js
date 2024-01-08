@@ -1,38 +1,147 @@
-import { useContext, useState } from "react";
+import { useState, useContext, useEffect } from "react"
+import { Link } from "react-router-dom"
 import { db } from "../config/firebase"
-import { getDoc, doc } from "firebase/firestore";
+import { collection, addDoc, getDoc, doc } from "firebase/firestore";
 import { DataContext } from "../context/Context";
 
-function Checkout() {
+function LogIn() {
 
-    const [order, getOrder] = useState([])
+    const [buyerName, setBuyerName] = useState("")
 
-    const {orderId} = useContext(DataContext)
-    
-    const orderCollectionRef = doc(db, "orders", orderId)
+    const [buyerEmail, setBuyerEmail] = useState("")
 
-    const getUserOrder = async () => {
+    const [buyerPhone, setBuyerPhone] = useState(0)
 
-        await getDoc(orderCollectionRef).then((snapshot) => {
-            getOrder({...snapshot.data()})
+    const [id, setId] = useState("")
+
+    const [gotOrder, hasGotOrder] = useState(false)
+
+    const [orderDetail, getOrderDetail] = useState ([])
+
+    const [logged, isLogged] = useState(false)
+
+    const [visibilityValue, setVisibilityValue] = useState("hidden")
+
+    const [order, getOrder] = useState({})
+
+    const {cart, totalAmount, setAmount} = useContext(DataContext)
+
+    const ordersCollectionRef = collection(db, "orders")
+
+    const getIdList = cart.map((element) => element.productId)
+
+    setAmount(cart.reduce((acumulator, item) => acumulator + item.productContent.price[0] * item.count, 0))
+
+    const addOrder = async () => {
+        await addDoc(ordersCollectionRef, {
+            buyer: {name: buyerName, email: buyerEmail, phone: buyerPhone},
+            items: getIdList,
+            total: totalAmount,
+            date: getCurrentDate()
+        }).then ((docRef) => {
+            setId(docRef.id)
         })
+        isLogged(true)
+     }
 
+    useEffect(() => {
+
+        if (logged === true) {
+            setVisibilityValue("hidden")
+            const orderCollectionRef = doc(db, "orders", id)
+
+                const getUserOrder = async () => {
+
+                    await getDoc(orderCollectionRef).then((snapshot) => {
+                        getOrder({...snapshot.data()})
+                        hasGotOrder(true)
+                    })
+                if (gotOrder === true) {
+                    getOrderDetail(
+                        <div>
+                            <div className="order-container">
+                                <h1>Your order is: {id}</h1>
+                                <p>Client: {order.buyer.name}</p>
+                                <p>E-mail: {order.buyer.email}</p>
+                                <p>Phone number: {order.buyer.phone}</p>
+                                <p>Date: {order.date}</p>
+                                <p>Total amount: {order.total}</p>
+                            </div>
+                        </div>)
+                }
+            }   
+            getUserOrder()
+        }else {
+            setVisibilityValue("visible")
+        }
+    })
+
+    const getCurrentDate = () => { 
+        const dateData = new Date();
+
+        const yyyy = dateData.getFullYear()
+        const mm = dateData.getMonth() + 1
+        const dd = dateData.getDate()
+        const hh = dateData.getHours()
+        const m = dateData.getMinutes()
+        const s = dateData.getSeconds()
+        const ml = dateData.getMilliseconds()
+
+        const timeFix = (value) => {
+            if (value > 9) {
+                return ("")
+            }else {
+                return ("0")
+            }
+        }
+
+        const mlFix = (value) => {
+            if (value > 99) {
+                return ("")
+            }else if (value > 9) {
+                return ("0")
+            }else {
+                return ("00")
+            }
+        }
+
+        return (timeFix(hh) + hh + ":" + timeFix(m) + m + ":" + timeFix(s) + s + ":" + mlFix(ml) + ml + " " + dd + "/" + mm + "/" + yyyy)
     }
 
-    getUserOrder()
+    const loginCheck = () => {
+        if (logged === false) {
+            return (
+                <div style={{visibility: visibilityValue}}>
+                    <p id="check-title">Please enter the data required</p>
+                    <div className="card-container" id="checkout-container">
+                        <p>Name:</p>
+                        <input placeholder="Enter your name..." type="text" onChange={(e) => setBuyerName(e.target.value)}/>
+                        <p>E-mail:</p>
+                        <input placeholder="Enter your e-mail..." type="text" onChange={(e) => setBuyerEmail(e.target.value)}/>
+                        <p>Phone number:</p>
+                        <input placeholder="Enter your phone number..." type="number" onChange={(e) => (setBuyerPhone(Number(e.target.value)))}/>
+                    </div>
+                    <div id="checkout-buttons-container">
+                        <Link to="/cart" className="cart-link"><button className="card-button">Return</button></Link>
+                        <button className="card-button" id="check-buy" onClick={() => {addOrder()}}>Send</button>
+                    </div>
+                </div>
+            )
+        }else {
+
+            return (
+                <div>
+                    {orderDetail}
+                </div>
+            )
+        }
+    }
 
     return (
         <div>
-            <div className="order-container">
-                <h1>Your order is: {orderId}</h1>
-                <p>Client: {order.buyer.name}</p>
-                <p>E-mail: {order.buyer.email}</p>
-                <p>Phone number: {order.buyer.phone}</p>
-                <p>Date: {order.date}</p>
-                <p>Total amount: {order.total}</p>
-            </div>
+            {loginCheck()}
         </div>
     )
 }
 
-export default Checkout
+export default LogIn

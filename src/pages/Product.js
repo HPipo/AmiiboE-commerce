@@ -82,7 +82,7 @@ function Product() {
     }
 
     const increment = () => {
-        if (count == productContent.stock) {
+        if (count === productContent.stock[0]) {
             setCount(prev => prev + 0)
         }else {
             setCount(prev => prev + 1)
