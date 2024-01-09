@@ -401,6 +401,50 @@
     width: 13%;
 }
 
+.order-container {
+    position: absolute;
+    width: 840px;
+    vertical-align: middle;
+    border: 2px solid rgb(128, 128, 128);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.order-title {
+    background-color: rgb(220, 220, 220);
+    font-size: 48px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.order-details {
+    list-style-type: square;
+    list-style-position: inside;
+}
+
+.order-detail-a {
+    background-color: rgb(200, 200, 200);
+    border-top: 2px solid rgb(176, 176, 176);
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.order-detail-b {
+    background-color: rgb(220, 220, 220);
+    border-top: 2px solid rgb(176, 176, 176);
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.order-data {
+    padding-left: 6px;
+}
+
 #checkout-button:hover {
     background-color: rgb(241, 170, 17);
 }

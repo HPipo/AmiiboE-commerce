@@ -60,12 +60,14 @@ function LogIn() {
                     getOrderDetail(
                         <div>
                             <div className="order-container">
-                                <h1>Your order is: {id}</h1>
-                                <p>Client: {order.buyer.name}</p>
-                                <p>E-mail: {order.buyer.email}</p>
-                                <p>Phone number: {order.buyer.phone}</p>
-                                <p>Date: {order.date}</p>
-                                <p>Total amount: {order.total}</p>
+                                <h1 className="order-title">Your order is: <b>{id}</b></h1>
+                                <ul className="order-details">
+                                    <li className="order-detail-a"><b>Client:</b> <span className="order-data">{order.buyer.name}</span></li>
+                                    <li className="order-detail-b"><b>E-mail:</b> <span className="order-data">{order.buyer.email}</span></li>
+                                    <li className="order-detail-a"><b>Phone number:</b> <span className="order-data">{order.buyer.phone}</span></li>
+                                    <li className="order-detail-b"><b>Date:</b> <span className="order-data">{order.date}</span></li>
+                                    <li className="order-detail-a"><b>Total amount:</b> <span className="order-data">{order.total}</span></li>
+                                </ul>
                             </div>
                         </div>)
                 }

@@ -31,7 +31,7 @@ function Cart() {
             <div className="card-footer">
                 <Link to="/products" className="cart-link"><button className="cart-button">Return</button></Link>
                 <button onClick={clearCart} className="cart-button"  id="card-clear">Clear Cart</button>
-                <Link to="/login" className="cart-link"><button className="cart-button"  id="card-buy">Checkout</button></Link>
+                <Link to="/checkout" className="cart-link"><button className="cart-button"  id="card-buy">Checkout</button></Link>
             </div>
         </div>
     )
