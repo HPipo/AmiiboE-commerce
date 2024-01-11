@@ -28,14 +28,14 @@ function LogIn() {
 
     const ordersCollectionRef = collection(db, "orders")
 
-    const getIdList = cart.map((element) => element.productId)
+    const getItemList = cart.map((element) => {return ({id: element.productId, name: element.productContent.name, count: element.count})})
 
     setAmount(cart.reduce((acumulator, item) => acumulator + item.productContent.price[0] * item.count, 0))
 
     const addOrder = async () => {
         await addDoc(ordersCollectionRef, {
             buyer: {name: buyerName, email: buyerEmail, phone: buyerPhone},
-            items: getIdList,
+            items: getItemList,
             total: totalAmount,
             date: getCurrentDate()
         }).then ((docRef) => {
@@ -66,7 +66,8 @@ function LogIn() {
                                     <li className="order-detail-b"><b>E-mail:</b> <span className="order-data">{order.buyer.email}</span></li>
                                     <li className="order-detail-a"><b>Phone number:</b> <span className="order-data">{order.buyer.phone}</span></li>
                                     <li className="order-detail-b"><b>Date:</b> <span className="order-data">{order.date}</span></li>
-                                    <li className="order-detail-a"><b>Total amount:</b> <span className="order-data">{order.total}</span></li>
+                                    <li className="order-detail-a"><b>Product list:</b> <span className="order-data"><ul>{order.items.map((item) => {return (<li key={item.id}><b>{item.count + "x "}</b> {item.name}</li>)})}</ul></span></li>
+                                    <li className="order-detail-b"><b>Total amount:</b> <span className="order-data">{order.total}</span></li>
                                 </ul>
                             </div>
                         </div>)
