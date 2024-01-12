@@ -105,7 +105,7 @@ function ItemListContainer () {
                         <div className="searchbox-container">
                             <form onSubmit={handleSubmit}>
                                 <FontAwesomeIcon icon={faMagnifyingGlass} id="search-icon"/>
-                                <input className="searchbox" type="text" onChange={(e) => {setTerm(e.target.value)}} placeholder="Search for an amiibo..."/>
+                                <input className="searchbox" type="text" onChange={(e) => {setTerm(e.target.value.toLowerCase())}} placeholder="Search for an amiibo..."/>
                             </form>
                         </div>    
                             <div className="category-container">

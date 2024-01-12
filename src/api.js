@@ -6,7 +6,7 @@ const searchAmiibo = async (term) => {
             query: term
         }
     })
-    return response.data.amiibo
+    return response.data.amiibo.map(data => {return {...data, name: data.name.toLowerCase()}})
     
 }
 
